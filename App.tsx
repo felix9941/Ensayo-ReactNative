@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, FlatList} from 'react-native';
 import styles from './Styles';
 import RenderItem from './RenderItem';
 
+/*
 const tasks = [
   {
     title: 'Alimentar al perro',
@@ -20,7 +21,7 @@ const tasks = [
     date: new Date(),
   },
 ];
-
+*/
 export interface Task {
   title: string;
   done: boolean;
@@ -29,8 +30,27 @@ export interface Task {
 
 // el TouchableOpacity es para hacer clickeable un view, text cualquier cosa
 export default function App() {
-  const markDone = () => {
-    console.log("markDone");
+  const [text, setText ] = useState('');
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const addTask = () =>{
+    const tmp = [...tasks];
+    const newTask = {
+      title: text,
+      done: false,
+      date: new Date(),
+    };
+    tmp.push(newTask);
+    setTasks(tmp);
+    setText('');
+  }
+  const markDone = (task: Task) => {
+    const tmp = [...tasks];
+    const index = tmp.findIndex(el => el.title === task.title);
+    const todo = tmp[index];
+    todo.done = !todo.done;
+    setTasks(tmp);
+
   };
 
   const deleteFunction = () => {
@@ -42,9 +62,11 @@ export default function App() {
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Agregar una nueva tarea"
+          onChangeText={(t: string) => setText(t)}
+          value={text}
           style={styles.textInput}
         />
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity onPress={addTask} style={styles.addButton}>
           <Text style={styles.whiteText}>Agregar</Text>
         </TouchableOpacity>
       </View>
