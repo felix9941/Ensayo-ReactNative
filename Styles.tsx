@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     text: {
       fontSize: 16,
-      color: '#6f6f6f',
+      color: 'black',
     },
     textDone: {
       fontSize: 16,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingHorizontal: 15,
       borderRadius: 10,
-    }
+    },
   });
 
   export default styles;
