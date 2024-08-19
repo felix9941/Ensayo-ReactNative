@@ -50,12 +50,15 @@ export default function App() {
     const todo = tmp[index];
     todo.done = !todo.done;
     setTasks(tmp);
-
   };
 
-  const deleteFunction = () => {
-    console.log("delete");
+  const deleteFunction = (task: Task) => {
+    const tmp = [...tasks];
+    const index = tmp.findIndex(el => el.title === task.title);
+    tmp.splice(index, 1);
+    setTasks(tmp);
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Mis Tareas por hacer</Text>
