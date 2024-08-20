@@ -64,6 +64,17 @@ const styles = StyleSheet.create({
       paddingHorizontal: 15,
       borderRadius: 10,
     },
+    cameraButton: {
+      backgroundColor: '#008CBA',
+      padding: 10,
+      borderRadius: 5,
+      marginLeft: 5,
+    },
+    image: {
+      width: 100,
+      height: 100,
+      marginTop: 10,
+    },
   });
 
   export default styles;

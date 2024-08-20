@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './Styles';
-import {Task} from './App';
+import { Task } from './App';
 
 interface ItemProps {
   item: Task;
   markDone: (task: Task) => void;
   deleteFunction: (task: Task) => void;
 }
+
 export default function RenderItem({
   item,
   markDone,
@@ -23,6 +24,9 @@ export default function RenderItem({
           {new Date(item.date).toLocaleDateString()}
         </Text>
       </TouchableOpacity>
+      {item.imageUri && (
+        <Image source={{ uri: item.imageUri }} style={{ width: 100, height: 100, marginTop: 10 }} />
+      )}
       {item.done && (
         <TouchableOpacity
           style={styles.removeButton}
